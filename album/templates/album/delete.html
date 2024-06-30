@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}{% load crispy_forms_tags %}
+<div class="container">
+    <h3 style="width: 50%; margin: auto;text-align: center;" class="pt-2"> Delete Album </h3>
+    <h6>Are You Sure ?</h6>
+    <form action="" method="post" style="width: 50%; margin:auto" >
+        {% csrf_token %}
+        {{form | crispy}}
+        <input type="submit" class="btn btn-success" value="Submit">
+        
+    </form>
+</div>
+
+
+{% endblock content %}

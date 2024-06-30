@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header">
+                Musicians Data
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Musician Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Album Rating</th>
+                        <th scope="col">Instrument Type</th>
+                        <th scope="col">Album Name</th>
+                        <th scope="col">Release Date</th>
+                        {% if request.user.is_authenticated %}
+                        <th scope="col">Actions</th>
+                        {% endif %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for data in value %}
+                      <tr>
+                        <th scope="row">{{data.id}}</th>
+                        
+                          <td><a href="{% url 'edit_musician' data.musician.id %}">{{data.musician.first_name}} {{data.musician.last_name}} </a></td>
+                       
+                        
+                        <td>{{data.musician.email}}</td>
+                        <td>{{data.reating}}</td>
+                        <td>{{data.musician.instrument_type}}</td>
+            
+                        <td>{{data.name}}</td>
+                        <td>{{data.rerelease_date}}</td>
+                        {% if request.user.is_authenticated %}
+                        <td>
+                            <a href="{% url 'edit_album' data.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'delete_album' data.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                        {% endif %}
+                      </tr>
+                      {% endfor %}
+                  </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+
